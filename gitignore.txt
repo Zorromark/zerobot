@@ -1,0 +1,8 @@
+.env
+config/
+ribitbot.txt
+.DS_Store
+*.code-workspace
+.*.swp
+node_modules
+config.json
