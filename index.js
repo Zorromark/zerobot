@@ -1,14 +1,15 @@
 const Discord = require('discord.js');
-const { Client, GatewayIntentBits, ActivityType, AttachmentBuilder, Partials } = require('discord.js');
+const { Client, GatewayIntentBits, ActivityType, AttachmentBuilder, Partials, Args } = require('discord.js');
 require('dotenv/config');
 
 const { createCanvas, loadImage } = require('canvas');
 const crypto = require('crypto');
-const { MessageEmbed } = require('discord.js')
+const { MessageEmbed }  = require('discord.js')
 const { EmbedBuilder } = require('discord.js')
 const { MessageAttachment } = require('discord.js');
 const { ApplicationCommandType, ApplicationCommandOptionType } = require('discord.js');
 const { ButtonStyle } = require('discord.js');
+const userinfo = require('./userinfo.js');
 
 
 
@@ -20,46 +21,43 @@ const client = new Client({
     GatewayIntentBits.MessageContent
   ]
 });
+client.commands = new Map();
 
 client.on('ready', () => {
-  console.log('Bot is ready to rick and roll')
-  client.user.setStatus('available')
-  client.user.setActivity(
-    'r!help',
-    { type: ActivityType.Playing })
+    console.log('Bot is ready to rick and roll')
+    client.user.setStatus('available')
+    client.user.setActivity(
+        'r!help',
+        { type: ActivityType.Playing })
 
-  const canvacord = require("canvacord")
+const canvacord = require ("canvacord")
 
-  client.on('guildMemberAdd', async member => {
-    const welcome = new canvacord.Welcomer()
-      .setUsername(member.user.username)
-      .setAvatar(member.user.displayAvatarURL({ format: "png" }))
-      .setColor("title", "#ffffff")
-      .setBackground("https://images-ext-1.discordapp.net/external/zKZmzv9zrEnJ-Ma0u8lpJAtaKp6db2RZ3M9uq9lcaL4/https/img.freepik.com/premium-photo/abstract-metal-background-with-light-effect_760214-2220.jpg?format=webp")
-      .setMemberCount(member.guild.memberCount)
-    let attachment = new Discord.AttachmentBuilder(await welcome.build(), "welcome.png")
-    const welcomeEmbed = new Discord.EmbedBuilder()
-      .setColor("#0099ff")
-      .setTitle("Welcome to the server!")
-      .setDescription(`Welcome ${member.user} to the server!`)
-      .setImage("attachment://welcome.png");
+client.on('guildMemberAdd', async member => {
+  const welcome = new canvacord.Welcomer()
+  .setUsername(member.user.username)
+  .setAvatar(member.user.displayAvatarURL({format: "png"}))
+  .setColor("title", "#ffffff")
+  .setBackground("https://images-ext-2.discordapp.net/external/83IOoVnPsJtDiSwgYdz8lZHoRWtuk1bYbvcCERIJBSA/https/www.psdgraphics.com/wp-content/uploads/2018/05/data-tunnel.jpg?width=1405&height=937")
+  .setMemberCount(member.guild.memberCount)
+  let attachment = new Discord.AttachmentBuilder(await welcome.build(), "welcome.png")
+  const welcomeEmbed = new Discord.EmbedBuilder()
+    .setColor("#0099ff")
+    .setTitle("Welcome to the server!")
+    .setDescription(`Welcome ${member.user} to the server!`)
+    .setImage("attachment://welcome.png");
 
-    member.guild.channels.cache.get(process.env.welcomechannel).send({ embeds: [welcomeEmbed], files: [attachment] });
-  });
-// in the .setbackground you can choose whatever image link adress you want, just make sure its in jpg/png format//
+  member.guild.channels.cache.get("1138967181162467420").send({ embeds: [welcomeEmbed], files: [attachment] });
+});
 
-//for line 47, you have to create a secret called welcomechannel and put your channel id in there, in the last line as well you have to create a token secret and put your bot token in there//
-
-  
 })
-function serverInfo(guild) {
-  return guild.available ? new EmbedBuilder()
+function serverInfo(guild){
+    return guild.available ? new EmbedBuilder()
     .setTitle(`Server information for ${guild.name} (${guild.id})`)
     .setDescription(
-      `Creation Time: ${guild.createdAt}`
+        `Creation Time: ${guild.createdAt}`
     ) : new Discord.EmbedBuilder()
-      .setTitle('Server information for ${guild.name} (${guild.id})')
-      .setDescription('error, try again later');
+    .setTitle('Server information for ${guild.name} (${guild.id})')
+    .setDescription('error, try again later');
 }
 
 
@@ -74,33 +72,49 @@ client.on('messageCreate', (message) => {
     message.channel.send({ embeds: [pingEmbed] });
   }
 
-  if (message.content === 'r!help') {
+  if (message.content ==='r!help') {
     const embuilder = new EmbedBuilder()
-      .setTitle("Zerobot help")
-      .setDescription(`Zerobot is a moderation bot used in many occasions for moderating servers and was created by absolutezer0z.
+    .setTitle("Zerobot help")
+      .setDescription(`Zerobot is a moderation bot used in many occasions for moderating servers and is going to be an outstanding bot in the future
 
           Commands:
           \`help\`
           \`ping\`
           \`serverinfo\`
-          \`built in welcomecard guild feature when user joins server\`
+          \`welcomecardguild\`
           \`invite\`
           `)
-      .setColor('#eb2617');
-    message.channel.send({ embeds: [embuilder] });
+    .setColor('#eb2617');
+    message.channel.send({embeds:[embuilder]});
 
   }
-  if (message.content === 'r!invite') {
+  if (message.content ==='r!invite') {
     const embuilder = new EmbedBuilder()
       .setTitle("Invite Zerobot")
-      .setDescription(`[Click here to invite](https://discord.com/api/oauth2/authorize?client_id=1110068022976192513&permissions=8&scope=bot)
-  `)
+      .setDescription(`https://discord.com/api/oauth2/authorize?client_id=1110068022976192513&permissions=8&scope=bot`)
       .setColor('#8f2121');
-    message.channel.send({ embeds: [embuilder] });
+    message.channel.send({ embeds: [ embuilder ] });
   }
 
   if (message.content === 'r!serverinfo') {
-    message.channel.send({ embeds: [serverInfo(message.guild)] });
+    message.channel.send({ embeds: [ serverInfo(message.guild) ] });
   }
-});
+
+  client.commands.set(userinfo.name, userinfo);
+  if (message.content === 'r!userinfo') {
+    const args = message.content.split(' ');
+    const command = args.shift().slice('r!'.length);
+
+    if (client.commands.has(command)) {
+      try {
+        client.commands.get(command).execute(message);
+      } catch (error) {
+        console.error(error);
+        message.reply("There was an error executing that command.");
+  
+      } 
+      }
+    }
+  }
+);
 client.login(process.env.token);
