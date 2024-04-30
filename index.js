@@ -83,6 +83,8 @@ client.on('messageCreate', (message) => {
           \`serverinfo\`
           \`welcomecardguild\`
           \`invite\`
+          \`userinfo\`
+          \`kick\`
           `)
     .setColor('#eb2617');
     message.channel.send({embeds:[embuilder]});
@@ -115,6 +117,9 @@ client.on('messageCreate', (message) => {
       } 
       }
     }
+  const kickCommand = require('./kick.js');
+  client.commands.set(kickCommand.name, kickCommand);
+});
   }
 );
 client.login(process.env.token);
