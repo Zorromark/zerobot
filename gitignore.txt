@@ -1,6 +1,6 @@
 .env
 config/
-ribitbot.txt
+zerobot.txt
 .DS_Store
 *.code-workspace
 .*.swp
