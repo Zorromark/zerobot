@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const { Client, GatewayIntentBits, ActivityType, MessageEmbed, Embuilder } = require('discord.js');
 require('dotenv/config');
 const userinfo = require('./userinfo.js');
+const rickrollCommand = require('./rickroll.js');
 
 const client = new Client({
   intents: [
@@ -32,7 +33,7 @@ client.on('guildMemberAdd', async member => {
   .setUsername(member.user.username)
   .setAvatar(member.user.displayAvatarURL({format: "png"}))
   .setColor("title", "#ffffff")
-  .setBackground("https://images-ext-2.discordapp.net/external/83IOoVnPsJtDiSwgYdz8lZHoRWtuk1bYbvcCERIJBSA/https/www.psdgraphics.com/wp-content/uploads/2018/05/data-tunnel.jpg?width=1405&height=937")
+  .setBackground("https://images-ext-1.discordapp.net/external/LtGt6J7yli4cbNLlgVwdwKx8Jxs1C8kU4-M2n11xcps/%3Fsize%3D626%26ext%3Djpg/https/img.freepik.com/free-photo/illustration-cosmic-background-with-orange-neon-laser-lights_181624-19567.jpg?format=webp")
   .setMemberCount(member.guild.memberCount)
   let attachment = new Discord.AttachmentBuilder(await welcome.build(), "welcome.png")
   const welcomeEmbed = new Discord.EmbedBuilder()
@@ -77,6 +78,7 @@ client.on('messageCreate', (message) => {
       \`invite\`
       \`userinfo\`
       \`kick\`
+      \`rickroll\`
       `)
       .setColor('#eb2617');
     message.channel.send({ embeds: [embuilder] });
@@ -100,7 +102,10 @@ client.on('messageCreate', (message) => {
     client.commands.get('userinfo').execute(message, mentionedUser);
   }
 
-  
+  if (message.content === 'r!rickroll') {
+    rickrollCommand.execute(message);
+  }
+
   const kickCommand = require('./kick.js');
   client.commands.set(kickCommand.name, kickCommand);
 });
