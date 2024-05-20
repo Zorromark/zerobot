@@ -1,6 +1,6 @@
 # Zerobot created by `absolutezer0z`/ Zorromark
 
-🌟Description: Zerobot is a moderation assisting bot used in many occasions for moderating servers and includes a couple functionalities such as a serverinfo command, invite command, ping command, help command, userinfo command, rickroll command, kick command, and an automatic welcomecard when a user joins the server. The prefix is r! (command example: r!help)
+🌟Description: Zerobot is a moderation assisting bot used in many occasions for moderating servers and includes a couple functionalities such as a serverinfo command, invite command, ping command, help command, userinfo command, rickroll command, kick command, crashthebot command, and an automatic welcomecard when a user joins the server. The prefix is r! (command example: r!help)
 Stay tuned for updates!
 
 Note that new commands come weekly (sometimes every 2 weeks)
