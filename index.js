@@ -95,7 +95,17 @@ client.on('messageCreate', (message) => {
   if (message.content === 'r!serverinfo') {
     message.channel.send({ embeds: [serverInfo(message.guild)] });
   }
-
+  
+if (message.content.toLowerCase().startsWith('r!crashthebot')) { // this code made by rustybust
+    message.reply({ embeds: [ 
+      new Discord.EmbedBuilder().setTitle('Crashed bot').setDescription('Succesfully crashed the bot') 
+    ] }).then( () => {
+      console.error('Crashing bot...');
+      process.exit(1);
+      undefined.x = 1; // if process.exit doesn't work, this is the alternative
+    });
+  }
+  
   client.commands.set(userinfo.name, userinfo);
   if (message.content.startsWith('r!userinfo')) {
     const mentionedUser = message.mentions.users.first();
