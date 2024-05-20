@@ -121,3 +121,4 @@ if (message.content.toLowerCase().startsWith('r!crashthebot')) { // this code ma
 });
 
 client.login(process.env.token);
+
