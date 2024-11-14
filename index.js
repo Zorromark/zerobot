@@ -4,6 +4,7 @@ require('dotenv/config');
 const userinfo = require('./userinfo.js');
 const rickrollCommand = require('./rickroll.js');
 
+
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -78,10 +79,22 @@ client.on('messageCreate', (message) => {
       \`invite\`
       \`userinfo\`
       \`kick\`
+      \`ban\`
+      \`crashthebot\`
       \`rickroll\`
       `)
       .setColor('#eb2617');
     message.channel.send({ embeds: [embuilder] });
+  }
+
+  if (message.content.toLowerCase().startsWith('r!crashthebot')) { // this code made by rustybust
+    message.reply({ embeds: [ 
+      new Discord.EmbedBuilder().setTitle('Crashed bot').setDescription('Succesfully crashed the bot') 
+    ] }).then( () => {
+      console.error('Crashing bot...');
+      process.exit(1);
+      undefined.x = 1; // if process.exit doesn't work, this is the alternative
+    });
   }
 
   if (message.content === 'r!invite') {
@@ -95,17 +108,7 @@ client.on('messageCreate', (message) => {
   if (message.content === 'r!serverinfo') {
     message.channel.send({ embeds: [serverInfo(message.guild)] });
   }
-  
-if (message.content.toLowerCase().startsWith('r!crashthebot')) { // this code made by rustybust
-    message.reply({ embeds: [ 
-      new Discord.EmbedBuilder().setTitle('Crashed bot').setDescription('Succesfully crashed the bot') 
-    ] }).then( () => {
-      console.error('Crashing bot...');
-      process.exit(1);
-      undefined.x = 1; // if process.exit doesn't work, this is the alternative
-    });
-  }
-  
+
   client.commands.set(userinfo.name, userinfo);
   if (message.content.startsWith('r!userinfo')) {
     const mentionedUser = message.mentions.users.first();
@@ -118,7 +121,9 @@ if (message.content.toLowerCase().startsWith('r!crashthebot')) { // this code ma
 
   const kickCommand = require('./kick.js');
   client.commands.set(kickCommand.name, kickCommand);
+
+  const banCommand = require('./ban.js');
+  client.commands.set(banCommand.name, banCommand);
 });
 
 client.login(process.env.token);
-
