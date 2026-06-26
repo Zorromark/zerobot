@@ -1,18 +1,14 @@
-# 🌟 Zerobot
+# Zerobot
 
 I built Zerobot a few years ago to help moderate servers and add some fun commands. When I was actively working on it, I used to drop new updates and commands every week or two. 
 
 It is a legacy project now, but feel free to check out the code!
 
----
+The bot is written using Node.js with Discord.js. 
 
-### ⚙️ Quick Info
-* **Prefix:** `r!` (Example: `r!help`)
-* **Tech Stack:** Node.js / Discord.js
+## Commands
 
----
-
-## 🛠️ Commands
+Here is a list of the commands available in the bot. The prefix is `r!`, so an example of a command would be `r!help`.
 
 | Command | Description |
 | :--- | :--- |
@@ -25,10 +21,9 @@ It is a legacy project now, but feel free to check out the code!
 | `r!crashthebot` | Forces the bot to crash (used for testing restarts). |
 | `r!rickroll` | Sends a Rickroll link in the chat. |
 
-### 🖼️ Automatic Welcome Cards
-* When a new user joins the server, the bot automatically sends a welcome card in the chat.
+An additional feature is that when a new user joins the server, the bot automatically sends a welcome card in the chat.
 
 ---
 
-## 🔗 Invite
-Want to add it to your server? [Click here to invite Zerobot](https://discord.com/api/oauth2/authorize?client_id=1110068022976192513&permissions=8&scope=bot).
+## Invite
+Click [here](https://discord.com/api/oauth2/authorize?client_id=1110068022976192513&permissions=8&scope=bot) to invite the bot to your server!
