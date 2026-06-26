@@ -1,41 +1,34 @@
 # 🌟 Zerobot
 
-> **Archived Project:** Zerobot is a multi-purpose Discord moderation and utility bot developed a few years ago to assist with server management and add a touch of fun to community spaces.
+I built Zerobot a few years ago to help moderate servers and add some fun commands. When I was actively working on it, I used to drop new updates and commands every week or two. 
+
+It is a legacy project now, but feel free to check out the code!
 
 ---
 
-## 🤖 About Zerobot
-
-Zerobot was built to be a simple, lightweight helper for Discord servers. Combining core administration utilities with interactive commands, it was designed to make managing a server easier while keeping members entertained. 
-
+### ⚙️ Quick Info
 * **Prefix:** `r!` (Example: `r!help`)
-* **Status:** This repository serves as a historical archive of the project. *Note: When active, the bot received weekly to bi-weekly command updates!*
+* **Tech Stack:** Node.js / Discord.js
 
 ---
 
-## 🛠️ Command Showcase
+## 🛠️ Commands
 
-| Command | Category | Description |
-| :--- | :--- | :--- |
-| `r!help` | **Utility** | Displays the help menu with a full list of available commands. |
-| `r!serverinfo` | **Utility** | Fetches detailed statistics and information about the current server. |
-| `r!userinfo` | **Utility** | Displays information about a specified user (or yourself). |
-| `r!ping` | **Utility** | Checks the bot's latency and connection response time. |
-| `r!invite` | **Utility** | Generates an invite link to add Zerobot to other servers. |
-| `r!kick` | **Moderation** | Kicks a specified user from the server (requires appropriate permissions). |
-| `r!crashthebot`| **Admin/Debug**| A diagnostic tool to test the bot's error handling and restart mechanics. |
-| `r!rickroll` | **Fun** | Instantly pranks the channel with the legendary Rick Astley. |
+| Command | Description |
+| :--- | :--- |
+| `r!help` | Shows all available commands. |
+| `r!serverinfo` | Shows info and stats about the server. |
+| `r!userinfo` | Shows info about a user. |
+| `r!ping` | Checks the bot's response time. |
+| `r!invite` | Gives you the link to invite the bot. |
+| `r!kick` | Kicks a member from the server. |
+| `r!crashthebot` | Forces the bot to crash (used for testing restarts). |
+| `r!rickroll` | Sends a Rickroll link in the chat. |
 
-### 🖼️ Key Features
-
-* **Automatic Welcome Cards:** Automatically generates and sends a stylized welcome card in the designated channel whenever a new member joins the server to greet them.
+### 🖼️ Automatic Welcome Cards
+* When a new user joins the server, the bot automatically sends a welcome card in the chat.
 
 ---
 
-## 🚀 Legacy Tech Stack
-* **Language:** JavaScript / Node.js
-* **Library:** Discord.js 
-
-*Feel free to browse the source code to see how the bot was constructed!*
-
-## To invite the bot, [Click here](https://discord.com/api/oauth2/authorize?client_id=1110068022976192513&permissions=8&scope=bot).
+## 🔗 Invite
+Want to add it to your server? [Click here to invite Zerobot](https://discord.com/api/oauth2/authorize?client_id=1110068022976192513&permissions=8&scope=bot).
